@@ -7,7 +7,7 @@ A (Java / non-Bedrock) Minecraft server with the ProtocolSupport plugin to exten
 ### Building minecraft-spigot-java-bedrock
 This downloads and build the latest ProtocolSupport:mcpenew, and the latest Spigot.
 
-`docker build -t hinchliff/minecraft-spigot:1.14.3 -t hinchliff/minecraft-spigot-java-bedrock:latest .`
+`docker build -t hinchliff/minecraft-spigot-java-bedrock:1.14.3 -t hinchliff/minecraft-spigot-java-bedrock:latest .`
 
 ### Running minecraft-spigot-java-bedrock
 `docker run -d -v /<PATH>/<TO>/<DATA>:/data -p 25565:25565 -p 25565:25565/udp --name="minecraft-server" hinchliff/minecraft-spigot-java-bedrock:1.14.3`
