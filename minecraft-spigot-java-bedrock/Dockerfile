@@ -17,7 +17,7 @@ RUN apt-get update \
 	&& cd /spigot \
         && curl -Ss -o /spigot/BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar \
 	&& java -jar BuildTools.jar --rev $SPIGOT_VER \
-        && rm -rf /spigot/BuildData /spigot/BuildTools.jar /spigot/Bukkit /spigot/CraftBukkit /spigot/Spigot /spigot/apache-maven-* /spigot/work \
+        && rm -rf /spigot/BuildData /spigot/BuildTools.jar /spigot/Bukkit /spigot/CraftBukkit /spigot/Spigot /spigot/apache-maven-* /spigot/work  /root/.m2 \
         && apt-get -y autoremove --purge \
         && rm -rf /var/lib/apt/lists/*
 
