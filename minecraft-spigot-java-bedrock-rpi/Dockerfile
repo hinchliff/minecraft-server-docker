@@ -1,4 +1,4 @@
-FROM gradle:jdk8 as builder
+FROM arm32v7/gradle:jdk8 as builder
 
 # Build 'mcpenew' branch of ProtocolSupport
 RUN cd /home/gradle && \
@@ -6,7 +6,7 @@ RUN cd /home/gradle && \
     cd ProtocolSupport && \
     ./gradlew --no-daemon jar
 
-FROM openjdk:8-jre-slim
+FROM arm32v7/openjdk:8-jre-slim
 
 # Download last version of spigot
 ENV SPIGOT_VER 1.14.3
@@ -16,7 +16,7 @@ RUN apt-get update \
         && mkdir -p /spigot \
 	&& cd /spigot \
         && curl -Ss -o /spigot/BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar \
-	&& java -jar BuildTools.jar --rev $SPIGOT_VER \
+	&& java -Xms256M -Xmx512M -jar BuildTools.jar --rev $SPIGOT_VER \
         && rm -rf /spigot/BuildData /spigot/BuildTools.jar /spigot/Bukkit /spigot/CraftBukkit /spigot/Spigot /spigot/apache-maven-* /spigot/work  /root/.m2 \
         && apt-get -y autoremove --purge \
         && rm -rf /var/lib/apt/lists/*
@@ -33,4 +33,4 @@ RUN mkdir -p /data/plugins
 COPY --from=builder /home/gradle/ProtocolSupport/target/ProtocolSupport.jar /data/plugins/ProtocolSupport.jar
 
 # start the server
-CMD java -Xms512M -Xmx1008M -Dcom.mojang.eula.agree=true -Dfile.encoding=UTF-8 -jar /spigot/spigot-${SPIGOT_VER}.jar nogui
+CMD java -Xms256M -Xmx800M -Dcom.mojang.eula.agree=true -Dfile.encoding=UTF-8 -jar /spigot/spigot-${SPIGOT_VER}.jar nogui
