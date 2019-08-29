@@ -39,5 +39,6 @@ Howether this is the place to put your minecraft config files, and realms if you
 
 ## Links
 * https://github.com/ProtocolSupport/ProtocolSupport
-** https://github.com/ProtocolSupport/ProtocolSupport/pull/972
+  * https://github.com/ProtocolSupport/ProtocolSupport/pull/972
 * https://www.spigotmc.org
+* https://minecraft.gamepedia.com/Bedrock_Edition_server_software#Protocol_Translator_list
